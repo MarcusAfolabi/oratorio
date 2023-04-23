@@ -31,7 +31,7 @@
                 <button type="submit" class="bg-red-600 font-semibold p-3 rounded-md text-center text-white w-full">
                     Log In
                 </button>
-                <a href="#" class="text-red-500 text-center block"> Forgot Password? </a>
+                <a href="{{ route('password.request') }}" class="text-red-500 text-center block"> Forgot Password? </a>
                 <hr class="pb-3.5">
                 <div class="flex">
                     <a href="#register" type="button" class="bg-green-600 hover:bg-green-500 hover:text-white font-semibold py-3 px-5 rounded-md text-center text-white mx-auto" uk-toggle>
@@ -61,9 +61,9 @@
                 <input type="text" id="lastname" name="last_name" placeholder="Last Name" class="with-border">
             </div>
             <input type="email" id="email" name="email" placeholder="Info@example.com" class="with-border">
-            <input type="hidden" value="city" name="city" placeholder="Info@example.com" class="with-border">
-            <input type="hidden" value="state" name="state" placeholder="Info@example.com" class="with-border">
-            <input type="hidden" value="country" name="country" placeholder="Info@example.com" class="with-border">
+            <input type="hidden" value="city" name="city" placeholder="location" class="with-border">
+            <input type="hidden" value="state" name="state" placeholder="location" class="with-border">
+            <input type="hidden" value="country" name="country" placeholder="location" class="with-border">
             <input type="password" id="password" name="password" placeholder="Password" class="with-border">
             <input type="password" id="confirm-password" name="password_confirmation" placeholder="Confirm Password" class="with-border">
 
@@ -77,14 +77,14 @@
                 </div>
                 <div>
                     <label class="mb-2"> Phone </label>
-                    <input type="tel" name="phone" id="phone" placeholder="+234" class="px-5 py-3 with-border">
+                    <input type="tel" name="phone" id="phone" placeholder="2348123456789" class="px-5 py-3 with-border">
                 </div>
             </div>
             <p class="text-xs text-gray-400 pt-3">By clicking Sign Up, you agree to our
                 <a href="#" class="text-green-500">Terms</a>,
-                <a href="#">Data Policy</a> and
-                <a href="#">Cookies Policy</a>.
-                You may receive SMS Notifications from us and can opt out any time.
+                <a href="#" class="text-green-500">Data Policy</a> and
+                <a href="#" class="text-green-500">Cookies Policy</a>.
+                You may receive Email Notifications from us and can opt out any time.
             </p>
             <div class="flex">
                 <button type="submit" class="bg-green-600 font-semibold mx-auto px-10 py-3 rounded-md text-center text-white">
