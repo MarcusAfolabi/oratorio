@@ -10,9 +10,9 @@
                 </span>
 
                 <div id="logo">
-                    <a href="feed.html">
-                        <img src="assets/images/logo.png" alt="">
-                        <img src="assets/images/logo-mobile.png" class="logo_mobile" alt="">
+                    <a href="#">
+                        <img src="assets/images/logo.png" alt="oratorio logo">
+                        <img src="assets/images/logo-mobile.png" class="logo_mobile" alt="oratorio logo">
                     </a>
                 </div>
             </div>

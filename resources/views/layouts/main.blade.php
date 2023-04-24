@@ -9,7 +9,7 @@
    <meta name="description" content="@yield('description')">
    <meta name="author" content="oratorio music foundation developers">
    <meta name="keywords" content="@yield('keywords')">
-   <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+   <link rel="shortcut icon" href="https://oratoriogroup.org/concert_favicon.png">
    <link rel="canonical" href="@yield('canonical')" />
 
    <meta name="msapplication-TileColor" content="#E70000">

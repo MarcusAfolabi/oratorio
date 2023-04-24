@@ -9,7 +9,7 @@
    <meta name="description" content="@yield('description')">
    <meta name="author" content="oratorio music foundation developers">
    <meta name="keywords" content="@yield('keywords')">
-   <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+   <link rel="shortcut icon" href="https://oratoriogroup.org/concert_favicon.png">
    <link rel="canonical" href="@yield('canonical')" />
 
    <meta name="msapplication-TileColor" content="#E70000">
@@ -48,9 +48,7 @@
       @include('partials._sidebar')
       @endauth
 
-      @yield('content')
-
-      
+      @yield('content')      
    </div>
 
    <link rel="preload" href="{{ asset('asset/dist/jquery-3.6.0.min.js') }}" as="script" crossorigin="anonymous">
