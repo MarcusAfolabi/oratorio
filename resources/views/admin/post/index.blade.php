@@ -10,7 +10,6 @@
             <div class="flex-1">
                 <h5 class="text-1xl font-semibold">
                     <a uk-tooltip="Add" href="#newContent" uk-toggle><i class="icon-material-outline-add"></i> Post content </a>
-                    <a uk-tooltip="Add" href="{{ route('media.index') }}"><i class="icon-material-outline-add"></i> Post type </a>
                 </h5>
             </div>
         </div>
@@ -118,24 +117,23 @@
                         <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
                     </svg>
                 </div>
-                <!-- <input type="file" id="file" name="image"> -->
                 <input type="file" name="image[]" multiple>
-
-                <!-- <input type="file" name="image" multiple accept="image/jpeg,image/png,image/jpg,image/gif,audio/mp3,audio/wav,audio/ogg,video/mp4,video/webm,video/ogg"> -->
-
                 <a href="#" class="bg-blue-200 flex font-medium h-9 items-center justify-center px-5 rounded-b-xl text-blue-600 text-white uk-position-bottom uk-transition-bottom-small">
                     Media File </a>
             </div>
             <div class="p-3 space-y-7">
                 <div class="line">
                     <select name="category_id" class="selectpicker with-border">
-                        @if(auth()->user()->role === 'admin')
-                        @foreach($medias as $media)
-                        <option value="{{ $media->id }}" selected>{{ $media->type }}</option>
-                        @endforeach
-                        @else
-                        <option value="0" selected>Thought</option>
-                        @endif
+                    @if(auth()->user()->role === 'admin')
+                    <option value="BeSpoke">BeSpoke</option>
+                    <option value="Podcast">Podcast</option>
+                    <option value="Sermon">Sermon</option>
+                    <option value="SingleTrack">SingleTrack</option>
+                    <option value="Event">Event</option>
+                    <option value="Job">Job</option>                     
+                    @else
+                    <option value="thought" selected>Thought</option>
+                    @endif
                     </select>
                 </div>
             </div>

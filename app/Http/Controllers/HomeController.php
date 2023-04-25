@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Comment;
-use App\Models\Media;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Media;
+use App\Models\Comment;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -17,26 +18,26 @@ class HomeController extends Controller
 
     public function index(Post $post)
     {
-        $medias = Media::select('id', 'type')->latest()->get();
-
 
         // $Single = Media::where('type', 'Single Track')->firstOrFail();
         // $sideSingleTrack = Post::with('images')->select('id', 'title', 'views')->where('category_id', $Single->id)->inRandomOrder()->limit(10)->get(['id', 'title', 'slug', 'views']);
-        $sideSingleTrack = Cache::remember('sideSingleTrack', 1209600, function () {
-            $Single = Media::where('type', 'Single Track')->firstOrFail();
-            return Post::with('images')->select('id', 'title', 'views')
-                ->where('category_id', $Single->id)
-                ->inRandomOrder()
-                ->limit(10)
-                ->get(['id', 'title', 'slug', 'views']);
-        });
+        // $sideSingleTracks = Cache::remember('sideSingleTracks', 1209600, function () {
+        //     return Post::with('images')->select('id', 'title', 'views')
+        //         ->where('category_id', 'SingleTrack')
+        //         ->inRandomOrder()
+        //         ->limit(10)
+        //         ->get(['id', 'title', 'slug', 'views']);
+        // });
 
-        $BeSpoke = Media::where('type', 'BeSpoke')->firstOrFail();
+        $sideSingleTracks = DB::table('posts')->with('images')->select('id', 'title', 'views')->where('category', 'SingleTrack')->inRandomOrder()->take(4)->get();
+        Cache::put('sideSingleTracks', $sideSingleTracks, now()->addWeeks(2));
+        $sideSingleTracks = Cache::get('sideSingleTracks');
+
         // $sideBespokes = Post::with('images')->select('id', 'title', 'views')->where('category_id', $BeSpoke->id)->inRandomOrder()->limit(10)->get(['id', 'title', 'slug', 'views']);
-        $sideBespokes = Cache::remember('side_bespokes', 1209600, function () use ($BeSpoke) {
+        $sideBespokes = Cache::remember('side_bespokes', 1209600, function () {
             return Post::with('images')
                 ->select('id', 'title', 'views')
-                ->where('category_id', $BeSpoke->id)
+                ->where('category_id', 'BeSpoke')
                 ->inRandomOrder()
                 ->limit(10)
                 ->get(['id', 'title', 'slug', 'views']);
@@ -44,14 +45,10 @@ class HomeController extends Controller
 
         // $Podcast = Media::where('type', 'Podcast')->firstOrFail();
         // $sidePodcast = Post::with('images')->select('id', 'title', 'views')->where('category_id', $Podcast->id)->inRandomOrder()->limit(10)->get(['id', 'title', 'slug', 'views']);
-
-        $cacheKey = 'sidePodcast'; // set a cache key
-        $cacheDuration = 60 * 24 * 14; // set a cache duration in minutes (2 weeks)
-
-        $sidePodcast = Cache::remember($cacheKey, $cacheDuration, function () {
-            $Podcast = Media::where('type', 'Podcast')->firstOrFail();
+ 
+        $sidePodcast = Cache::remember('sidePodcast', 1209600, function () {
             return Post::with('images')->select('id', 'title', 'views')
-                ->where('category_id', $Podcast->id)
+                ->where('category_id', 'Podcast')
                 ->inRandomOrder()
                 ->limit(10)
                 ->get(['id', 'title', 'slug', 'views']);
@@ -62,20 +59,16 @@ class HomeController extends Controller
         // $sideSermon = Post::with('images')->select('id', 'title', 'views')->where('category_id', $Sermon->id)->inRandomOrder()->limit(10)->get(['id', 'title', 'slug', 'views']);
 
         $sideSermon = Cache::remember('sideSermon', 1209600, function () {
-            $Sermon = Media::where('type', 'Sermon')->firstOrFail();
-            return Post::with('images')->select('id', 'title', 'views')->where('category_id', $Sermon->id)->inRandomOrder()->limit(10)->get(['id', 'title', 'slug', 'views']);
+            return Post::with('images')->select('id', 'title', 'views')->where('category_id', 'Sermon')->inRandomOrder()->limit(10)->get(['id', 'title', 'slug', 'views']);
         });
 
         // $Event = Media::where('type', 'Event')->firstOrFail();
         // $events = Post::with(['images'])->select('id', 'title', 'views')->where('category_id', $Event->id)->select('id', 'title', 'slug', 'views')->inRandomOrder()->limit(10)->get();
-        $Event = Cache::remember('event_media', 1209600, function () {
-            return Media::where('type', 'Event')->firstOrFail();
-        });
-
-        $events = Cache::remember('events', 1209600, function () use ($Event) {
+       
+        $events = Cache::remember('events', 1209600, function ()  {
             return Post::with('images')
                 ->select('id', 'title', 'slug', 'views')
-                ->where('category_id', $Event->id)
+                ->where('category_id', 'Event')
                 ->inRandomOrder()
                 ->limit(10)
                 ->get();
@@ -84,9 +77,8 @@ class HomeController extends Controller
         // $Job = Media::where('type', 'Job')->firstOrFail();
         // $jobs = Post::with(['images'])->select('id', 'title', 'views')->where('category_id', $Job->id)->select('id', 'title', 'slug', 'views')->inRandomOrder()->limit(10)->get();
 
-        $Job = Media::where('type', 'Job')->firstOrFail();
-        $jobs = Cache::remember('jobs', 1209600, function () use ($Job) {
-            return Post::with(['images'])->select('id', 'title', 'views')->where('category_id', $Job->id)->select('id', 'title', 'slug', 'views')->inRandomOrder()->limit(10)->get();
+        $jobs = Cache::remember('jobs', 1209600, function () {
+            return Post::with(['images'])->select('id', 'title', 'views')->where('category_id', 'Job')->select('id', 'title', 'slug', 'views')->inRandomOrder()->limit(10)->get();
         });
 
         $comments = Comment::where('post_id', $post->id)->select('content', 'user_id')->latest()->get();

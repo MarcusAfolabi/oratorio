@@ -373,7 +373,6 @@
         </div>
     </div>
 </div>
-<!-- <x-post :post /> -->
 
 <div id="edit-post-modal" class="edit-post is-story" uk-modal>
     <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical rounded-lg p-0 lg:w-5/12 relative shadow-2xl uk-animation-slide-bottom-small">
@@ -401,12 +400,14 @@
             <div class="flex items-center w-full justify-between border-t p-3">
                 <select type="hidden" name="category_id" class="selectpicker mt-2 story">
                     @if(auth()->user()->role === 'admin')
-                    @php $medias = App\Models\Media::select('id', 'type')->latest()->get(); @endphp
-                    @foreach($medias as $media)
-                    <option value="{{ $media->id }}" selected>{{ $media->type }}</option>
-                    @endforeach
+                    <option value="BeSpoke">BeSpoke</option>
+                    <option value="Podcast">Podcast</option>
+                    <option value="Sermon">Sermon</option>
+                    <option value="SingleTrack">SingleTrack</option>
+                    <option value="Event">Event</option>
+                    <option value="Job">Job</option>                     
                     @else
-                    <option value="0" selected>Thought</option>
+                    <option value="thought" selected>Thought</option>
                     @endif
                 </select>
 

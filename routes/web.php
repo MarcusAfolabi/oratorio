@@ -18,6 +18,7 @@ Route::get('/thanks', function () {
 
 Route::resource('volunteer', VolunteerController::class);
 Route::resource('/', WelcomeController::class);
+
 Route::get('/feeds', [HomeController::class, 'index'])->name('dashboard.index');
 
 Route::resource('contact', ContactController::class);
@@ -40,21 +41,16 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(PostController::class)->group(function () {
     Route::get('/post',  'index')->name('post.index');
-    Route::get('/media',  'media')->name('media.index');
     Route::get('/job-post',  'job')->name('job-post.index');
     Route::get('/content-list',  'list')->name('post.list');
     Route::get('/events',  'event')->name('event-post.index');
     Route::get('/post/{post}/edit',  'edit')->name('post.edit');
-    Route::get('/media/{media}/edit',  'editMedia')->name('media.edit');
     Route::post('/comment/{post:slug}/comment',  'comment')->name('posts.comment');
     Route::post('/comment/{post:slug}/uncomment',  'uncomment')->name('posts.uncomment');
     Route::post('/like/{post:slug}/like',  'like')->name('posts.like');
     Route::post('/posts',  'store')->name('post.store');
-    Route::post('/media',  'storeMedia')->name('media.store');
     Route::get('/post/{post:slug}',  'show')->name('post.show');
     Route::put('/post/{post}', 'update')->name('post.update');
-    Route::put('/media/{media}', 'updateMedia')->name('media.update');
-    Route::delete('/media/{media}', 'destroyMedia')->name('media.destroy');
     Route::delete('/post/{post}', 'destroy')->name('post.destroy');
     
 });

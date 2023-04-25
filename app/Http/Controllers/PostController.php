@@ -62,34 +62,6 @@ class PostController extends Controller
         return view('admin.post.event', compact('events', 'medias'));
     }
 
-    public function media()
-    {
-        $medias = Media::paginate(10);
-        return view('admin.media.index', compact('medias'));
-    }
-
-    public function editMedia(Media $media)
-    {
-        return view('admin.media.edit', compact('media'));
-    }
-
-    public function storeMedia(Request $request)
-    {
-        $media = new Media();
-        $media->type = $request['type'];
-        $media->slug = Str::slug($request->input('type') . '-');
-        $media->save();
-        return redirect()->back()->with('status', 'Added');
-    }
-
-    public function updateMedia(Request $request, Media $media)
-    {
-        $media->type = $request['type'];
-        $media->slug = Str::slug($request->input('type') . '-');
-        $media->save();
-        return redirect(route('media.index'))->with('status', 'Updated');
-    }
-
     public function store(PostRequest $request)
     {
         $user = auth()->user();
