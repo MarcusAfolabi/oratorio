@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
-use App\Models\Media;
 use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
@@ -29,9 +28,9 @@ class HomeController extends Controller
         //         ->get(['id', 'title', 'slug', 'views']);
         // });
 
-        $sideSingleTracks = DB::table('posts')->with('images')->select('id', 'title', 'views')->where('category', 'SingleTrack')->inRandomOrder()->take(4)->get();
-        Cache::put('sideSingleTracks', $sideSingleTracks, now()->addWeeks(2));
-        $sideSingleTracks = Cache::get('sideSingleTracks');
+        $sideSingleTrack = DB::table('posts')->with('images')->select('id', 'title', 'views')->where('category', 'SingleTrack')->inRandomOrder()->take(4)->get();
+        Cache::put('sideSingleTracks', $sideSingleTrack, now()->addWeeks(2));
+        $sideSingleTrack = Cache::get('sideSingleTrack');
 
         // $sideBespokes = Post::with('images')->select('id', 'title', 'views')->where('category_id', $BeSpoke->id)->inRandomOrder()->limit(10)->get(['id', 'title', 'slug', 'views']);
         $sideBespokes = Cache::remember('side_bespokes', 1209600, function () {
@@ -100,6 +99,6 @@ class HomeController extends Controller
             ->latest()
             ->limit(7)
             ->get();
-        return view('dashboard.index', compact('influencers', 'latest_members', 'posts', 'comments', 'count_users', 'jobs', 'events', 'sideSingleTrack', 'sideBespokes', 'sidePodcast', 'sideSermon', 'medias'));
+        return view('dashboard.index', compact('influencers', 'latest_members', 'posts', 'comments', 'count_users', 'jobs', 'events', 'sideSingleTrack', 'sideBespokes', 'sidePodcast', 'sideSermon'));
     }
 }

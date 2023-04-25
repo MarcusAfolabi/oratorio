@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Image;
-use App\Models\Media;
 use App\Models\Comment;
 use App\Models\Postlike;
 use Illuminate\Support\Str;
@@ -28,38 +27,23 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with(['images'])->select('id', 'title', 'content', 'created_at', 'category_id', 'views')->paginate(10);
-        $medias = Media::select('id', 'type')->latest()->get();
-        return view('admin.post.index', compact('posts', 'medias'));
+         return view('admin.post.index', compact('posts'));
     }
 
     public function list(Post $post)
-    {
-        $categoryJob = 'Job';
-        $categoryEvent = 'Event';
-        $category = Media::where('type', $categoryJob)->firstOrFail();
-        $category1 = Media::where('type', $categoryEvent)->firstOrFail();
-        $contents = Post::whereIn('category_id', [$category->id, $category1->id])->paginate(10);
+    { 
+        $contents = Post::whereIn('category_id', ['Job', 'Event'])->paginate(10);
         return view('admin.post.list', compact('contents'));
     }
     public function job()
-    {
-
-        $categoryType = 'Job';
-        $category = Media::where('type', $categoryType)->firstOrFail();
-
-        $medias = Media::select('id', 'type')->latest()->get();
-        $jobs = Post::where('category_id', $category->id)->paginate(10);
-
-        return view('admin.post.job', compact('jobs', 'medias'));
+    { 
+        $jobs = Post::where('category_id', 'Job')->paginate(10);
+        return view('admin.post.job', compact('jobs'));
     }
     public function event()
     {
-        $categoryType = 'Event';
-        $category = Media::where('type', $categoryType)->firstOrFail();
-
-        $events = Post::where('category_id', $category->id)->paginate(10);
-        $medias = Media::select('id', 'type')->latest()->get();
-        return view('admin.post.event', compact('events', 'medias'));
+        $events = Post::where('category_id', 'Event')->paginate(10);
+        return view('admin.post.event', compact('events'));
     }
 
     public function store(PostRequest $request)
@@ -210,10 +194,5 @@ class PostController extends Controller
         return redirect()->back()->with('status', 'Post and associated images deleted successfully');
     }
      
-    public function destroyMedia(Media $media)
-    {
-
-        $media->delete();
-        return redirect()->back()->with('status', 'Delete');
-    }
+    
 }
