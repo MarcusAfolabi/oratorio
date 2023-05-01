@@ -61,7 +61,6 @@
 <body>
    <div class="body-wrap">
 
-      @include('layouts.hero')
       @yield('main')
       <div class="modal  popup-box fade" id="eventModal" tabindex="-1" aria-hidden="true">
          <div class="modal-dialog popup-box-dialog modal-dialog-centered">
@@ -114,74 +113,7 @@
                </div>
             </div>
          </div>
-      </div>
-      <!-- <div class="modal  popup-box fade" id="eventModal" tabindex="-1" aria-hidden="true">
-         <div class="modal-dialog popup-box-dialog modal-dialog-centered">
-            <div class="modal-content popup-box-content">
-               <div class="popup-card" style="width:100%">
-                  <button type="button" class="btn popup2-btn  ms-auto" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i></button>
-                  <img src="assets/images/popup.png" class="card-img-top" alt="popup-bg">
-                  <div class="card-body popup-card-body">
-                     <div class="popup-title-area">
-                        <p class="popup-sub"></p>
-                        <h5 class="card-title popup-title"></h5>
-                     </div>
-                  </div>
-                  <form action="{{ route('volunteer.store') }}" class="popup-form" method="POST">
-                     @csrf
-                     <div class="row gy-3 mb-3">
-                        <div class="col-lg-6">
-                           <label for="exampleFormControlInput5" class="form-label">First name</label>
-                           <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Your First Name" required>
-                        </div>
-                        <div class="col-lg-6">
-                           <label for="exampleFormControlInput5" class="form-label">Last name</label>
-                           <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Your Last Name" required>
-                        </div>
-                        <div class="col-lg-6">
-                           <label for="exampleFormControlInput6" class="form-label">Email</label>
-                           <input type="email" class="form-control" name="email" id="email" placeholder="Enter Email" required>
-                        </div>
-                        <div class="col-lg-6">
-                           <label for="exampleFormControlInput7" class="form-label">Phone</label>
-                           <input type="number" class="form-control" name="phone" id="phone" placeholder="Enter Phone" required>
-                        </div>
-                        <div class="col-lg-6">
-                           <label for="exampleFormControlInput7" class="form-label">Location</label>
-                           <input type="address" class="form-control" name="location" id="address" placeholder="Enter Location" required>
-                        </div>
-                        <div class="col-lg-6">
-                           <label for="exampleFormControlInput8" class="form-label">Born Again?</label>
-                           <select class="form-control bg-black-50" name="born_again" id="born_again" required>
-                              <option value="Yes">Yes </option>
-                              <option value="No">No </option>
-                           </select>
-                        </div>
-                        <div class="col-lg-6">
-                           <label for="exampleFormControlInput8" class="form-label">Department to serve</label>
-                           <select class="form-control bg-black-50" name="department" id="department" required>
-                              <option title="Physical Attendance is required" value="Music">Music </option>
-                              <option value="Intercessory Team">Intercessory Team </option>
-                              <option value="Welfare Team">Welfare Team </option>
-                              <option value="Protocol Team">Protocol Team </option>
-                              <option value="Publicity/ Evangelism Team">Publicity/ Evangelism Team </option>
-                              <option value="Media Team">Media Team </option>
-                           </select>
-                        </div>
-                        <div class="col-lg-6">
-                           <label for="exampleFormControlInput8" class="form-label">Willing to attend physical meetings?</label>
-                           <select class="form-control bg-black-50" name="attendance" id="attendance" required>
-                              <option value="Yes">Yes </option>
-                              <option value="No">No </option>
-                           </select>
-                        </div>
-                     </div>
-                     <button type="submit" class="custom-btn2">Volunteer</button>
-                  </form>
-               </div>
-            </div>
-         </div>
-      </div> -->
+      </div> 
       <div class="modal  popup-box fade" id="donateModal" tabindex="-1" aria-hidden="true">
          <div class="modal-dialog popup-box-dialog modal-dialog-centered">
             <div class="modal-content popup-box-content">
@@ -199,12 +131,12 @@
                      <div class="row gy-3 mb-3">
                         <div class="col-lg-6">
                            <label for="exampleFormControlInput5" class="form-label">Full name</label>
-                           <input type="text" class="form-control" name="customer[name]" id="fullname" placeholder="Your fullname" required>
+                           <input type="text" class="form-control" name="customer[name]" id="fullname" placeholder="Your name" required>
                         </div>
                         <input type="hidden" name="public_key" value="FLWPUBK-fd46e84af0c86ba8904baef11a90ccc4-X" />
                         <input type="hidden" name="tx_ref" value="<?php echo date("H:i:s"); ?>" />
                         <input type="hidden" name="currency" value="NGN" />
-                        <input type="hidden" name="redirect_url" value="https://oratorio.test/#status" />
+                        <input type="hidden" name="redirect_url" value="https://oratoriogroup.org/#status" />
 
                         <div class="col-lg-6">
                            <label for="exampleFormControlInput6" class="form-label">Email</label>

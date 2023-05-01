@@ -14,6 +14,23 @@ Route::get('/thanks', function () {
     return view('thanks');
 });
 
+Route::get('/about-oratorio', function () {
+    return view('aboutUs');
+});
+
+Route::get('/contact-oratorio', function () {
+    return view('contactUs');
+});
+
+
+Route::get('/gallery-oratorio', function () {
+    return view('gallery');
+});
+
+Route::get('/register-quiz', function () {
+    return view('auth.quiz');
+});
+
 
 
 Route::resource('volunteer', VolunteerController::class);
