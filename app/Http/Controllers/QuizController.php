@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Participant;
 use App\Models\Quiz;
+use App\Models\Participant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ParticipantEmailNotification;
 
 class QuizController extends Controller
 {
     public function participantEmail(Request $request, Participant $participant)
     {
         $request->validate([
-            'email' => ['required', 'email', function ($attribute, $value, $fail) {
+            'email' => ['required', 'email', 'unique:participants', function ($attribute, $value, $fail) {
                 [$user, $domain] = explode('@', $value);
                 $mxRecords = dns_get_record($domain, DNS_MX);
 
@@ -34,8 +36,16 @@ class QuizController extends Controller
 
         $participant->email = $request->email;
         $participant->save();
-        
-        return redirect()->back()->with('status', 'Check your email for the Oratorio handbook');
+
+        // Notification::route('mail', [
+        //     'oratoriogroup@gmail.com' => 'Alert! New participant has picked up the Handbook',
+        // ])->notify(new ParticipantEmailNotification($participant));
+
+        // Notification::send($participant->email, new ParticipantEmailNotification($participant));
+        // Notification::send($participant, new ParticipantEmailNotification($participant));
+        // $participant->sendEmailVerificationNotification();
+
+        return redirect()->back()->with('status', 'Email verified! Check your email for the Oratorio handbook and Quiz link');
     }
 
 

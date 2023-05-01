@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
             $table->string('email');
+            $table->boolean('verified')->default(false);
             $table->timestamps();
         });
     }

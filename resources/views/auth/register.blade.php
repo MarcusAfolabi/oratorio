@@ -21,11 +21,11 @@
             {{ session('status') }}
         </div>
         @endif
-        
+
         <x-validation-errors class="mb-1" />
 
         <div class="lg:mt-0 lg:w-96 md:w-1/2 sm:w-2/3 mt-10 w-full">
-            <form action="#" class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg" method="POST">
+            <form action="{{ route('participant.email') }}" class="p-6 space-y-4 relative bg-white shadow-lg rounded-lg" method="POST">
                 @csrf
                 <input type="email" id="email" name="email" placeholder="Enter Email" class="with-border">
                 <button type="submit" class="bg-red-600 font-semibold p-3 rounded-md text-center text-white w-full">

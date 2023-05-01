@@ -8,6 +8,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\VolunteerController;
  
 Route::get('/thanks', function () {
@@ -31,7 +32,7 @@ Route::get('/register-quiz', function () {
     return view('auth.quiz');
 });
 
-
+Route::post('register-quiz', [QuizController::class, 'participantEmail'])->name('participant.email');
 
 Route::resource('volunteer', VolunteerController::class);
 Route::resource('/', WelcomeController::class);
