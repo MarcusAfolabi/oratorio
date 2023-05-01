@@ -10,5 +10,17 @@ class Answer extends Model
     use HasFactory;
 
     protected $table = 'answers';
-    protected $fillable = ['quiz_id', 'participant_id', 'response'];
+    protected $fillable = ['question', 'participant_id', 'chosenAnswer'];
+
+    public function getQuestion($question)
+{
+    $quiz = Quiz::where('title', $question)->first();
+
+    if ($quiz) {
+        return $quiz->question;
+    } else {
+        return 'Unknown question';
+    }
+}
+
 }

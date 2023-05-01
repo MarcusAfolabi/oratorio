@@ -11,5 +11,5 @@ class Quiz extends Model
 
     protected $table = 'quizzes';
 
-    protected $fillable = 'title';
+    protected $fillable = ['title', 'optionA', 'optionB', 'optionC', 'correctAnswer'];
 }

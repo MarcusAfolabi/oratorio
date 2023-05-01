@@ -24,47 +24,20 @@ Entertaining performances, Dynamic artists, Music genres pop, rock, jazz, R&B, M
          <div class="dots img-moving-anim5">
                <img src="assets/images/dots/dots5.png" alt="Shape Images">
             </div>
-           
+            @forelse ($galleries->images as $image)
             <div class="col-sm-6 col-lg-3" data-aos="fade-right" data-aos-duration="700">
                <div class="about-item">
                   <div class="item-thumb">
-                     <img src="assets/images/about/about2.png" alt="About Images">
+                     <img src="{{ asset('storage/' . $image->path) }}" alt="About Images">
                      <div class="item-content text-white"> 
                      </div>
                   </div>
                </div>
             </div>
-            <div class="col-sm-6 col-lg-3" data-aos="fade-right" data-aos-duration="700">
-               <div class="about-item">
-                  <div class="item-thumb">
-                     <img src="assets/images/about/about2.png" alt="About Images">
-                     <div class="item-content text-white"> 
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="col-sm-6 col-lg-3" data-aos="fade-left" data-aos-duration="600">
-               <div class="about-item">
-                  <div class="item-thumb">
-                     <img src="assets/images/about/about3.png" alt="About Images">
-                     <div class="item-content text-white"> 
-                     </div>
-                  </div>
-               </div>
-            </div>
-             <div class="col-sm-6 col-lg-3" data-aos="fade-left" data-aos-duration="600">
-               <div class="about-item">
-                  <div class="item-thumb">
-                     <img src="assets/images/about/about3.png" alt="About Images">
-                     <div class="item-content text-white"> 
-                     </div>
-                  </div>
-               </div>
-            </div>
-            
-            
+            @empty
+            @endforelse 
             <div class="dots img-moving-anim5">
-               <img src="assets/images/dots/dots4.png" alt="Shape Images">
+               <img src="{{ asset('assets/images/dots/dots4.png') }}" alt="Shape Images">
             </div>
          </div>
       </div>

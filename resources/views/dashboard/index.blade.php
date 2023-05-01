@@ -380,7 +380,7 @@
             <h3 class="text-lg font-semibold"> Edit Post </h3>
             <button class="uk-modal-close-default bg-gray-100 rounded-full p-2.5 right-2" type="button" uk-close uk-tooltip="title: Close ; pos: bottom ;offset:7"></button>
         </div>
-        <form id="edit-post-form" action="{{ route('post.update', $post) }}" method="POST" enctype="multipart/form-data">
+        <form id="edit-post-form" action="#" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="flex flex-1 items-start space-x-4 p-5">
                 <img src="{{ asset(auth()->user()->profile_photo_url) }}" class="bg-gray-200 border border-white rounded-full w-11 h-11">
@@ -405,7 +405,8 @@
                     <option value="Sermon">Sermon</option>
                     <option value="SingleTrack">SingleTrack</option>
                     <option value="Event">Event</option>
-                    <option value="Job">Job</option>                     
+                    <option value="Job">Job</option>      
+                    <option value="Gallery"> Gallery</option> 
                     @else
                     <option value="thought" selected>Thought</option>
                     @endif

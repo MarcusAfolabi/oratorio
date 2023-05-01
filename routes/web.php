@@ -1,16 +1,18 @@
 <?php
 
+use App\Models\Post;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\CommunityController;
-use App\Http\Controllers\QuizController;
 use App\Http\Controllers\VolunteerController;
- 
+
 Route::get('/thanks', function () {
     return view('thanks');
 });
@@ -25,14 +27,29 @@ Route::get('/contact-oratorio', function () {
 
 
 Route::get('/gallery-oratorio', function () {
-    return view('gallery');
+    $galleries = Cache::remember('random_posts', 60 * 24 * 7, function () {
+        return Post::with(['images'])
+            ->select('id', 'user_id', 'slug', 'content', 'created_at')
+            ->where('category_id', 'Gallery')
+            ->inRandomOrder()
+            ->limit(20)
+            ->get();
+    });
+    return view('gallery', compact('galleries'));
 });
+ 
+Route::controller(QuizController::class)->group(function () {
+Route::get('/quiz-list', 'index')->name('quizzes.index');
+Route::post('/quiz-store', 'store')->name('quizzes.store');
+Route::get('/quiz-store{quiz}/edit', 'edit')->name('quizzes.edit');
+Route::put('/quiz-update{quiz}', 'update')->name('quizzes.update');
+Route::delete('/quiz{quiz}', 'destroy')->name('quizzes.destroy');
 
-Route::get('/register-quiz', function () {
-    return view('auth.quiz');
+Route::get('/take-quize', 'take')->name('quizzes.take');
+Route::get('/answered-quize', 'answered')->name('answered.quiz');
+Route::post('/take-quize','storeAnswer')->name('quizzes.participant');
+Route::post('register-quiz', 'participantEmail')->name('participant.email');
 });
-
-Route::post('register-quiz', [QuizController::class, 'participantEmail'])->name('participant.email');
 
 Route::resource('volunteer', VolunteerController::class);
 Route::resource('/', WelcomeController::class);

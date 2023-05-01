@@ -24,14 +24,13 @@
                 <x-validation-errors class="mb-4" />
                 <div class="grid md:gap-y-7 md:gap-x-6 gap-6">
                     @csrf
-                    <!-- <h2 class="text-xl font-semibold mb-7" id="Radio"> Radio Button </h2> -->
-
+                    <input hidden type="email" class="with-border" value="{{ request()->query('email') }}" name="email" />
                     <div class="text-lg font-semibold mb-1"> What is the purpose of Oyindamola Adejumo-Ayibiowu World Outreach? </div>
                     <div class="line"><input class="line__input" id="name" autofocus name="name" type="text" onkeyup="this.setAttribute('value', this.value);" value="{{ old('name')}}" autocomplete="off"><span for="name" class="line__placeholder"> </span></div>
- 
+
                     <div class="text-lg font-semibold mb-1"> What are the two arms of Oyindamola Adejumo-Ayibiowu World Outreach, and what are their focus areas?</div>
                     <div class="line"><input class="line__input" id="name" autofocus name="name" type="text" onkeyup="this.setAttribute('value', this.value);" value="{{ old('name')}}" autocomplete="off"><span for="name" class="line__placeholder"> </span></div>
-                </div>  
+                </div>
                 <div class="center">
                     <button type="submit" class="bg-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-5 rounded-md text-center text-white mx-auto">
                         Submit Quiz

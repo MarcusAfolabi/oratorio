@@ -6,23 +6,21 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+     
     public function up(): void
     {
-        Schema::create('quizzes', function (Blueprint $table) {
+        Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->unique();
+            $table->text('question');
+            $table->string('participant_id');
+            $table->text('chosenAnswer');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+     
     public function down(): void
     {
-        Schema::dropIfExists('quizzes');
+        Schema::dropIfExists('answers');
     }
 };
