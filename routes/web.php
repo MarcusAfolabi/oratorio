@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\QuizController;
+use App\Http\Controllers\AuditionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
@@ -38,17 +38,9 @@ Route::get('/gallery-oratorio', function () {
     return view('gallery', compact('galleries'));
 });
  
-Route::controller(QuizController::class)->group(function () {
-Route::get('/quiz-list', 'index')->name('quizzes.index');
-Route::post('/quiz-store', 'store')->name('quizzes.store');
-Route::get('/quiz-store{quiz}/edit', 'edit')->name('quizzes.edit');
-Route::put('/quiz-update{quiz}', 'update')->name('quizzes.update');
-Route::delete('/quiz{quiz}', 'destroy')->name('quizzes.destroy');
+Route::controller(AuditionController::class)->group(function () { 
+    Route::get('/users', 'index')->name('users.index');
 
-Route::get('/take-quize', 'take')->name('quizzes.take');
-Route::get('/answered-quize', 'answered')->name('answered.quiz');
-Route::post('/take-quize','storeAnswer')->name('quizzes.participant');
-Route::post('register-quiz', 'participantEmail')->name('participant.email');
 });
 
 Route::resource('volunteer', VolunteerController::class);
@@ -71,7 +63,6 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/unfollow-user', 'unfollow')->name('users.unfollow');
     Route::delete('/users/{user}', 'destroy')->name('users.destroy');
     Route::get('/logout', 'logout')->name('user.logout');
-
 });
 
 Route::controller(PostController::class)->group(function () {

@@ -2,38 +2,44 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Quiz;
+use App\Models\Audition;
+use App\Models\Answer;
 use App\Models\Participant;
 use Illuminate\Http\Request;
-use App\Http\Requests\QuizRequest;
-use App\Models\Answer;
-use Illuminate\Support\Facades\Notification;
-use App\Notifications\ParticipantEmailNotification;
+use Illuminate\Validation\Rule;
+use App\Mail\NewParticipantMail;
+use App\Http\Requests\AuditionRequest;
+use Illuminate\Support\Facades\Mail; 
 
-class QuizController extends Controller
+class AuditionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'verified'])->except(['take', 'storeAnswer', 'participantEmail']);
+        $this->middleware(['auth', 'verified'])->except(['take', 'storeAnswer', 'participantEmail', 'registerQuiz']);
     }
 
     public function index()
     {
-        $quizzes = Quiz::all();
+        $quizzes = Audition::all();
         return view('admin.quizzes.index', compact('quizzes'));
+    }
+    
+    public function registerQuiz()
+    {
+        return view('auth.register');
     }
 
     public function take(Request $request)
     {
-        $quizzes = Quiz::inRandomOrder()->get();
+        $quizzes = Audition::inRandomOrder()->get();
         $email = $request->query('email');
         return view('admin.quizzes.take', compact('email', 'quizzes'));
     }
 
 
-    public function store(QuizRequest $request)
+    public function store(AuditionRequest $request)
     {
-        $quiz = new Quiz();
+        $quiz = new Audition();
         $quiz->title = $request['title'];
         $quiz->optionA = $request['optionA'];
         $quiz->optionB = $request['optionB'];
@@ -67,7 +73,7 @@ class QuizController extends Controller
     }
 
 
-    public function edit(Quiz $quiz)
+    public function edit(Audition $quiz)
     {
         return view('admin.quizzes.edit', compact('quiz'));
     }
@@ -75,7 +81,7 @@ class QuizController extends Controller
 
     public function update(Request $request, Quiz $quiz)
     {
-        $quiz = Quiz::findOrFail($quiz->id);
+        $quiz = Audition::findOrFail($quiz->id);
         $quiz->title = $request['title'];
         $quiz->optionA = $request['optionA'];
         $quiz->optionB = $request['optionB'];
@@ -86,7 +92,7 @@ class QuizController extends Controller
     }
 
 
-    public function destroy(Quiz $quiz)
+    public function destroy(Audition $quiz)
     {
         $quiz->delete();
         return redirect()->back()->with('status', 'Deleted');
@@ -94,38 +100,19 @@ class QuizController extends Controller
 
     public function participantEmail(Request $request, Participant $participant)
     {
-        $request->validate([
-            'email' => ['required', 'email', 'unique:participants', function ($attribute, $value, $fail) {
-                [$user, $domain] = explode('@', $value);
-                $mxRecords = dns_get_record($domain, DNS_MX);
-
-                // Check if MX records exist and have a valid priority value
-                if (empty($mxRecords) || !array_filter($mxRecords, function ($record) {
-                    return isset($record['pri']) && $record['pri'] > 0;
-                })) {
-                    $fail('The email domain is invalid.');
-                }
-
-                // Verify email existence using SMTP
-                $validator = new \Egulias\EmailValidator\EmailValidator();
-                $isValid = $validator->isValid($value, new \Egulias\EmailValidator\Validation\RFCValidation());
-
-                if (!$isValid) {
-                    $fail('The email address is invalid.');
-                }
-            }],
-        ]);
-
+      $request->validate([
+    'email' => [
+        'required',
+        'email',
+        Rule::unique('participants'),
+        'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/',
+        'dns'
+    ]
+]);
+        $participant = new Participant();
         $participant->email = $request->email;
-        $participant->save();
-
-        // Notification::route('mail', [
-        //     'oratoriogroup@gmail.com' => 'Alert! New participant has picked up the Handbook',
-        // ])->notify(new ParticipantEmailNotification($participant));
-
-        // Notification::send($participant->email, new ParticipantEmailNotification($participant));
-        // Notification::send($participant, new ParticipantEmailNotification($participant));
-        $participant->sendEmailVerificationNotification();
+        $participant->save(); 
+        Mail::to($participant->email)->send(new NewParticipantMail($participant));
 
         return redirect()->back()->with('status', 'Email verified! Check your email for the Oratorio handbook and Quiz link');
     }
