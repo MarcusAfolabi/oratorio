@@ -1,21 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-
-	<meta charset="utf-8" />
-
-	<!--Meta Tegs-->
-	<title>Audition</title>
-	<meta content="" name="description" />
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Oratorio Audition</title>
+	<meta name="description" content="Take the first step towards fulfilling your dreams. Join the Oratorio Audition now!
+" />
 
 	<!--Icons-->
-	<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon" />
-	<link rel="apple-touch-icon" href="img/favicon/apple-touch-icon.png" />
-	<link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png" />
-	<link rel="apple-touch-icon" sizes="114x114" href="img/favicon/apple-touch-icon-114x114.png" />
+<link rel="shortcut icon" href="https://oratoriogroup.org/concert_favicon.png">
+   <link rel="canonical" href="@yield('canonical')" />
 
+   <meta name="msapplication-TileColor" content="#E70000">
+   <meta name="theme-color" content="#E70000">
+    
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
