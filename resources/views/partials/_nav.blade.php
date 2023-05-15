@@ -22,6 +22,9 @@
                         <a data-bs-toggle="modal" href="#donateModal" class="nav-link py-3">Support</a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('audition.index') }}" target="_blank" class="nav-link py-3">Audition</a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('contact-oratorio') }}" class="nav-link py-3">Contact</a>
                     </li>
                 </ul>

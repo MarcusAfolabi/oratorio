@@ -10,11 +10,11 @@ class Answer extends Model
     use HasFactory;
 
     protected $table = 'answers';
-    protected $fillable = ['question', 'participant_id', 'chosenAnswer'];
+    protected $fillable = ['question', 'participant', 'chosenAnswer'];
 
     public function getQuestion($question)
 {
-    $quiz = Quiz::where('title', $question)->first();
+    $quiz = Question::where('question', $question)->first();
 
     if ($quiz) {
         return $quiz->question;

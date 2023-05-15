@@ -12,9 +12,11 @@ class ParticipantEmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    public function __construct()
+    public $participant;
+    
+    public function __construct(Participant $participant)
     {
-        //
+        $this->participant = $participant;
     }
 
     public function via(object $notifiable): array
@@ -22,29 +24,13 @@ class ParticipantEmailNotification extends Notification implements ShouldQueue
         return ['mail'];
     }
 
-    // public function toMail(object $notifiable): MailMessage
-    // {
-    //     return (new MailMessage)
-    //         ->subject('Great move dear')
-    //         ->greeting('Dear intending participant')
-    //         ->line('You have take the bold step of faith to join Oratorio Music Foundation. The handbook would guide and help you to understand what Oratorio is, and prepare you for the next phase (Quiz)')
-    //         ->action('Download Handbook', url("/oratorio-handbook?email={$this->participant->email}"))
-    //         ->action('Start Quiz', url("/register-quiz?email={$this->participant->email}"))
-    //         ->line('Ensure you read and understand the handbook before you take the quiz')
-    //         ->line('Good Luck!');
-    // }
     public function toMail(object $notifiable): MailMessage
-{
-    return (new MailMessage)
-        ->subject('Great move dear')
-        ->greeting('Dear intending participant')
-        ->line('You have taken the bold step of faith to join Oratorio Music Foundation. The handbook would guide and help you to understand what Oratorio is, and prepare you for the next phase (Quiz)')
-        // ->action('Download Handbook', url("/oratorio-handbook?email={$this->participant->email}"))
-        // ->action('Start Quiz', url("/oratorio-quiz?email={$this->participant->email}"))
-        ->attach(public_path('assets/images/banner/bg.png'))
-        ->line('Ensure you read and understand the handbook before you take the quiz')
-        ->line('Good Luck!');
-}
+    {
+        return (new MailMessage)
+            ->subject('New Audition Participant')
+            ->greeting('Dear Admin,')
+            ->line('You have another participant that is about to take the test');
+    }
 
 
 
