@@ -11,8 +11,8 @@
 
                 <div id="logo">
                     <a href="#">
-                        <img src="assets/images/logo.png" alt="oratorio logo">
-                        <img src="assets/images/logo-mobile.png" class="logo_mobile" alt="oratorio logo">
+                        <img src="{{ asset('new_logo_oratorio_group.png') }}" alt="oratorio logo">
+                        <img src="{{ asset('new_logo_oratorio_group.png') }}" class="logo_mobile" alt="oratorio logo">
                     </a>
                 </div>
             </div>

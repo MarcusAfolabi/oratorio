@@ -30,6 +30,16 @@
 	<link rel="stylesheet" href="{{ asset('audition/libs/hero-slider/hero-style.css') }}">
 	<link rel="stylesheet" href="{{ asset('audition/css/main.css') }}" />
 	<link rel="stylesheet" href="{{ asset('audition/css/media.css') }}" />
+	<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-178400534-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-178400534-1');
+</script>
+
 
 </head>
 

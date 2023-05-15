@@ -16,17 +16,14 @@ use App\Notifications\ParticipantEmailNotification;
 
 class AuditionController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware(['auth', 'verified'])->except(['take', 'storeAnswer', 'participantEmail', 'registerQuiz']);
-    // }
-
-
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified'])->except(['index', 'testParticipant', 'takeTest', 'submitTest', 'finishTest']);
+    }
 
     public function index()
     {
-        $tests = Question::all();
-        return view('admin.audition.index', compact('tests'));
+        return view('admin.audition.index');
     }
 
     public function list()
