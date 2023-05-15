@@ -49,18 +49,23 @@ class AuditionController extends Controller
         return view('admin.question.edit', compact('question'));
     }
 
-    public function update(QuestionRequest $request, Question $question)
-    {
-        $question = Question::findOrFail($question->id);
-        $question->question = $request['question'];
-        $question->optionA = $request['optionA'];
-        $question->optionB = $request['optionB'];
-        $question->optionC = $request['optionC'];
-        $question->correct_answer = $request['correct_answer'];
-        $question->save();
-        return view('admin.audition.index')->with('status', 'Updated');
+   public function update(QuestionRequest $request, $questionId)
+{
+    $question = Question::find($questionId);
+    
+    if (!$question) {
+        abort(404); // or handle the case where the question is not found
     }
-
+    
+    $question->question = $request['question'];
+    $question->optionA = $request['optionA'];
+    $question->optionB = $request['optionB'];
+    $question->optionC = $request['optionC'];
+    $question->correct_answer = $request['correct_answer'];
+    $question->save();
+    
+    return redirect(route('audition.list'))->with('status', 'Updated');
+}
 
     public function destroy(Question $question)
     {

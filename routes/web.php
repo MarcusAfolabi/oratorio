@@ -45,9 +45,9 @@ Route::controller(AuditionController::class)->group(function () {
     Route::get('/auditions/questions', 'list')->name('audition.list');
     Route::get('/auditions/save', 'auditionParticipant')->name('audition.participant');
     Route::post('/auditions/store', 'store')->name('audition.store');
-    Route::get('/audition/{audition}/edit', 'edit')->name('audition.edit');
+    Route::get('/audition/{question}/edit', 'edit')->name('audition.edit');
     Route::put('/audition/{audition}', 'update')->name('audition.update');
-    Route::delete('/audition/{audition}', 'destroy')->name('audition.destroy');
+    Route::delete('/audition/{audition}/question', 'destroy')->name('audition.destroy');
 
     Route::get('/auditions/test', 'takeTest')->name('audition.test');
     Route::post('/auditions/test/store', 'submitTest')->name('test.store');
