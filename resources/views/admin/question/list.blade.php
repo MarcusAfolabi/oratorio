@@ -11,7 +11,7 @@
             <div class="flex-1">
                 <h5 class="text-1xl font-semibold">
                     <a uk-tooltip="Add" href="#modal-field" uk-toggle><i class="icon-material-outline-add"></i> Test Questions  </a>
-                   &nbsp; &nbsp; <a href="#" class="text-green-600 hover:text-green-600"><i class="icon-material-outline-group"></i> Audition Participant </a>
+                   &nbsp; &nbsp; <a href="{{ route('answered.test') }}" class="text-green-600 hover:text-green-600"><i class="icon-material-outline-group"></i> Audition Participant </a>
                 </h5>
             </div>
         </div>

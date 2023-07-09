@@ -81,7 +81,7 @@
 		</div>
 	</div>
 	 
-	<div class="scroll-top animation"><i class="mdi mdi-arrow-up"></i></div>
+	<div class="scroll-top animation"><a href="/"><i class="mdi mdi-arrow-up"></i>Home</a></div>
 
 	<div class="hidden"></div>
 

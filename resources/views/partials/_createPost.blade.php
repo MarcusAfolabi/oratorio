@@ -33,7 +33,7 @@
                     <option value="SingleTrack"> SingleTrack</option> 
                     <option value="Gallery"> Gallery</option> 
                     @else
-                    <option value="0" selected>Thought</option>
+                    <option value="thought" selected>Thought</option>
                     @endif
                 </select>
 

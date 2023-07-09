@@ -43,7 +43,7 @@ Route::get('/gallery-oratorio', function () {
 Route::controller(AuditionController::class)->group(function () { 
     Route::get('/auditions', 'index')->name('audition.index');
     Route::get('/auditions/questions', 'list')->name('audition.list');
-    Route::get('/auditions/save', 'auditionParticipant')->name('audition.participant');
+    Route::post('/auditions/save', 'testParticipant')->name('audition.participant');
     Route::post('/auditions/store', 'store')->name('audition.store');
     Route::get('/audition/{question}/edit', 'edit')->name('audition.edit');
     Route::put('/audition/{audition}', 'update')->name('audition.update');
@@ -52,6 +52,7 @@ Route::controller(AuditionController::class)->group(function () {
     Route::get('/auditions/test', 'takeTest')->name('audition.test');
     Route::post('/auditions/test/store', 'submitTest')->name('test.store');
     Route::get('/auditions/test/done', 'finishTest')->name('test.finish');
+    Route::get('/audition/answers', 'answeredTest')->name('answered.test');
 
 });
 

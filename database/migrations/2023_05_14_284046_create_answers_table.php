@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('chosenAnswer');  
+            $table->text('chosenAnswer');  
             $table->string('participant');
             $table->string('question');
+            $table->string('phone');
             $table->integer('score')->default(0);
             $table->timestamps();
         });

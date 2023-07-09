@@ -62,20 +62,15 @@ class PostController extends Controller
 
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $image) {
-                $path = $image->store('postImages', 'public');
+                // $path = $image->store('postImages', 'public');
+                $path = $image->storeAs('postImages', $image->getClientOriginalName(), 'public');
+
                 $postImage = new Image();
                 $postImage->path = $path;
                 $postImage->post_id = $post->id;
                 $postImage->save();
             }
         }
-
-        Notification::route('mail', [
-            'oratoriogroup@gmail.com' => 'Alert! New post has been published on the website',
-        ])->notify(new ContentNotification($post));
-
-        $users = User::all();
-        Notification::send($users, new ContentNotification($post));
 
         return redirect()->back()->with('status', 'Shared!');
     }

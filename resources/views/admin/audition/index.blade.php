@@ -97,11 +97,12 @@
 			<div class="row">
 				<div class="col-md-6 about__text-wrapp">
 				<x-validation-errors class="mb-4" />
-				@if (session('status'))
-				<p class="bg-whit border-t-4 border-red-600 p-5 shadow-lg relative rounded-md" uk-alert>
-					{{ session('status') }}
-				</p>
-				@endif
+            	@if (session('status'))
+                <p style="color: red; font-weight: bold; text-decoration: underline;">
+                    {{ session('status') }}
+                </p>
+                @endif
+
 					<div class="about__title title__grey">Our Vision</div>
 					<div class="about__big-tex text__quote"><span class="line__text"></span>To be an anointed
 						international musical group ministering with excellent skill and creativity, wining souls to the
@@ -114,14 +115,13 @@
 				<br>
 				<div class="col-md-6 about__text-wrapp">
 					<div class="about__title title__grey">Your first step</div>
-					<form action="{{ route('audition.participant') }}">
+					<form action="{{ route('audition.participant') }}" method="POST">
 						@csrf
 						<input id="email" type="email" name="email" class="px-4 py-4  text-white input input__subscribe" placeholder="Your e-mail">
 						<button type="submit" class="submit__button animation"><i class="mdi mdi-arrow-right"></i>Apply
 							Now</button>
 					</form>
-				</div>
-				
+				</div> 
 			</div>
 		</div>
 	</div>
@@ -202,7 +202,7 @@
 			<div class="row">
 				<div class="col-md-12 text__quote action__text">Take the first step towards fulfilling your dreams. Join
 					the Oratorio Audition now! </div>
-				<form action="{{ route('audition.participant') }}">
+				<form action="{{ route('audition.participant') }}" method="POST">
 					@csrf
 					<input id="email" type="email" name="email" class="px-4 py-4  text-white input input__subscribe" placeholder="Your e-mail">
 					<button type="submit" class="submit__button animation"><i class="mdi mdi-arrow-right"></i>Apply

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->on('users')->reference('id')->onDelete('cascade');
-            $table->foreignId('category_id')->on('media')->reference('id')->onDelete('cascade');
+            $table->string('category_id');
             $table->string('title')->nullable();
             $table->text('content');
             $table->string('slug');

@@ -11,7 +11,7 @@
             {{ $audio->title }}
         </a>
         <audio class="js-player">
-            <source src="{{ asset('storage/' . $audio->images->first()->path) }}" />
+            <source src="{{ asset('storage/app/public/' . $audio->images->first()->path) }}" />
         </audio>
         <div class="text-sm text-blue-500 mt-0.5"> {{ $audio->views }} Streamed</div>
     </div>

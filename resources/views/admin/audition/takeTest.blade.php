@@ -1,8 +1,8 @@
 @extends('layouts.connect')
-@section('title', 'Quiz to Oratorio Music Foundation')
+@section('title', 'Test to Oratorio Music Foundation')
 @section('description', 'Dont miss your next opportunity, do well to pass the quiz')
 @section('keywords', 'quiz, exam, test, performance, empowering, growing, networks, influencers, mentors')
-@section('canonical', 'https://oratoriogroup.org/register/test')
+@section('canonical', 'https://oratoriogroup.org/auditions/test')
 @section('content')
 
 <style>
@@ -22,15 +22,21 @@
         <div class="-mt-16 bg-white max-w-2xl mx-auto p-10 relative rounded-md shadow">
             <form method="POST" action="{{ route('test.store') }}">
                 <x-validation-errors class="mb-4" />
+                @if (session('status'))
+                <button class="bg-red-500 hover:bg-red-500 hover:text-white font-semibold py-3 px-5 rounded-md text-center text-white mx-auto">
+                    {{ session('status') }}
+                </button>
+               <button class="bg-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-5 rounded-md text-center text-white mx-auto"> <a href="/">Go to Homepage</a></button>
+                @endif
                 <div class="grid md:gap-y-7 md:gap-x-6 gap-6">
                     @csrf
                     <input hidden type="email" class="with-border" value="{{ request()->query('email') }}" name="participant" />
-                    @forelse($tests as $test)
-                    <div class="text-sm font-semibold mb-0">{{ $test->question }}</div>
-                    <!-- Use an array as the name attribute for the title field -->
+                    @forelse($tests as $key => $test)
+                    
+                    
+                   <b></b> <div class="text-sm font-semibold mb-0">{{ $key++ }}. {{ $test->question }}</div>
                     <input type="hidden" name="question[]" value="{{ $test->title }}">
                     <div class="radio">
-                        <!-- Use an array as the name attribute for the correctAnswer field -->
                         <input id="radio-1-{{ $test->id }}" name="chosenAnswer[{{ $test->id }}]" value="{{ $test->optionA }}" type="radio">
                         <label for="radio-1-{{ $test->id }}"><span class="radio-label"></span> {{ $test->optionA }} </label>
                     </div>
@@ -45,6 +51,10 @@
                     @empty
                     Sorry, nothing to show!
                     @endforelse
+                    <div class="text-sm font-semibold mb-4"> 
+                    <lable>Phone no</lable>
+                    <input type="tel" class="with-border px-3 py-3"  name="phone" />
+                    </div>  
                 </div>
                 <div class="center">
                     <button type="submit" class="bg-green-500 hover:bg-green-500 hover:text-white font-semibold py-3 px-5 rounded-md text-center text-white mx-auto">

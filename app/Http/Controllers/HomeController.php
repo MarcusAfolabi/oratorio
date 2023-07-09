@@ -55,6 +55,7 @@ class HomeController extends Controller
         });
 
         $comments = Comment::where('post_id', $post->id)->select('content', 'user_id')->latest()->get();
+        
         $posts = Cache::remember('random_posts', 60 * 24 * 7, function () {
             return Post::with(['images'])
                 ->select('id', 'user_id', 'slug', 'content', 'created_at')

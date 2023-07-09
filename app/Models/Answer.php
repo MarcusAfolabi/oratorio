@@ -10,10 +10,10 @@ class Answer extends Model
     use HasFactory;
 
     protected $table = 'answers';
-    protected $fillable = ['question', 'participant', 'chosenAnswer'];
+    protected $fillable = ['question', 'participant', 'chosenAnswer', 'phone'];
 
     public function getQuestion($question)
-{
+    {
     $quiz = Question::where('question', $question)->first();
 
     if ($quiz) {
@@ -21,6 +21,6 @@ class Answer extends Model
     } else {
         return 'Unknown question';
     }
-}
+    }
 
 }

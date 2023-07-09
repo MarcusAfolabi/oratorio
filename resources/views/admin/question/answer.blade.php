@@ -9,9 +9,9 @@
     <div class="mcontainer">
         <div class="flex justify-between items-center relative md:mb-4 mb-3">
             <div class="flex-1">
-                <h5 class="text-1xl font-semibold">
-                    <a uk-tooltip="Add" href="#modal-field" uk-toggle><i class="icon-material-outline-add"></i> Quiz </a>
-                    &nbsp; &nbsp; <a href="#" class="text-green-600 hover:text-green-600"><i class="icon-material-outline-group"></i> Participant Quiz </a>
+               <h5 class="text-1xl font-semibold">
+                    <a href="{{ route('audition.list') }}"><i class="icon-material-outline-add"></i> Test Questions  </a>
+                   &nbsp; &nbsp; <a href="{{ route('answered.test') }}" class="text-green-600 hover:text-green-600"><i class="icon-material-outline-group"></i> Audition Participant </a>
                 </h5>
             </div>
         </div>
@@ -38,7 +38,9 @@
                                 <thead class="border-b">
                                     <tr>
                                         <th scope="col" class="text-sm font-medium text-green-900 px-6 py-4 text-left">
-                                            Participant ID</th> 
+                                            Participant Phone</th> 
+                                             <th scope="col" class="text-sm font-medium text-green-900 px-6 py-4 text-left">
+                                            Participant Phone</th> 
                                         <th scope="col" class="text-sm font-medium text-green-900 px-6 py-4 text-left">
                                         Question & Chosen Answer</th>
                                     </tr>
@@ -47,7 +49,8 @@
                                     @if ($answers)
                                     @forelse ($answers as $answer)
                                     <tr class="border-b">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-900"> {{ $answer->participant_id  }} </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-900"> {{ $answer->participant }} </td>
+                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-900"> {{ $answer->phone }} </td>
                                         
                                         <th class="text-sm text-green-900 font-light px-6 py-4 whitespace-nowrap">
                                             @if ($answer->chosenAnswer)
