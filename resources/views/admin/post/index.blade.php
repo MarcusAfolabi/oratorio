@@ -131,6 +131,7 @@
                     <option value="SingleTrack">SingleTrack</option>
                     <option value="Event">Event</option>
                     <option value="Job">Job</option>                     
+                    <option value="Gallery">Gallery</option>
                     @else
                     <option value="thought" selected>Thought</option>
                     @endif

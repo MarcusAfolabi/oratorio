@@ -120,7 +120,7 @@ Entertaining performances, Dynamic artists, Music genres, pop, rock, jazz, R&B, 
                <div class="dots img-moving-anim3">
                   <img src="assets/images/dots/dots7.png" alt="Shadow Image">
                </div>
-               <a href="{{ route('register') }}" target="_blank"> <button class="custom-btn2 video-btn">Join Now</button></a>
+               <a href="{{ route('login') }}" target="_blank"> <button class="custom-btn2 video-btn">Join Now</button></a>
             </div>
          </div>
       </div>
@@ -136,7 +136,7 @@ Entertaining performances, Dynamic artists, Music genres, pop, rock, jazz, R&B, 
          <h2 class="blog-title">
             Join our community of vocal, singer, instrumentalist and more
          </h2>
-         <a href="{{ route('register') }}" target="_blank"> <button class="blog-btn custom-btn">Join Now</button></a>
+         <a href="{{ route('login') }}" target="_blank"> <button class="blog-btn custom-btn">Join Now</button></a>
       </div>
    </div>
    <div class="shape">

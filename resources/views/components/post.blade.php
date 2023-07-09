@@ -23,16 +23,22 @@
                 <input type="file" name="image[]" accept="file/*" multiple>
             </div>
             <div class="flex items-center w-full justify-between border-t p-3">
-                <select name="category_id" class="selectpicker mt-2 story">
+                <div class="line">
+                    <select name="category_id" class="selectpicker with-border">
                     @if(auth()->user()->role === 'admin')
-                    @php $medias = App\Models\Media::select('id', 'type')->latest()->get(); @endphp
-                    @foreach($medias as $media)
-                    <option value="{{ $media->id }}" selected>{{ $media->type }}</option>
-                    @endforeach
+                    <option value="BeSpoke">BeSpoke</option>
+                    <option value="Podcast">Podcast</option>
+                    <option value="Sermon">Sermon</option>
+                    <option value="SingleTrack">SingleTrack</option>
+                    <option value="Event">Event</option>
+                    <option value="Job">Job</option>                     
+                    <option value="Gallery">Gallery</option>
+                    <option value="thought" selected>Thought</option>
                     @else
-                    <option value="0" selected>Thought</option>
+                    <option value="thought" selected>Thought</option>
                     @endif
-                </select>
+                    </select>
+                </div>
 
                 <div class="flex space-x-2">
                     <button id="submit-btn" type="submit" form="post-form" class="bg-red-100 flex font-medium h-9 items-center justify-center px-5 rounded-md text-red-600 text-sm">

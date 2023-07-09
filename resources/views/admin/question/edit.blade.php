@@ -2,7 +2,7 @@
 @section('title', 'Edit Quiz')
 @section('description', 'Empowering through professional skills and growing your networks with influencers and by mentors')
 @section('keywords', 'skills, empowerment, ngo, professions, expert, empowering, growing, networks, influencers, mentors')
-@section('canonical', 'https://oratoriogroup.org/quiz-list')
+@section('canonical', 'https://oratoriogroup.org/auditions/questions-list')
 @section('content')
 <div class="main_content">
     <div class="mcontainer">

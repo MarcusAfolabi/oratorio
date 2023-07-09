@@ -23,11 +23,13 @@ class AuditionController extends Controller
 
     public function index()
     {
+        header('Cache-Control: public, max-age=604800');
         return view('admin.audition.index');
     }
 
     public function list()
     {
+        header('Cache-Control: public, max-age=604800');
         $tests = Question::all();
         return view('admin.question.list', compact('tests'));
     }
@@ -49,18 +51,23 @@ class AuditionController extends Controller
         return view('admin.question.edit', compact('question'));
     }
 
-    public function update(QuestionRequest $request, Question $question)
+   public function update(QuestionRequest $request, $questionId)
     {
-        $question = Question::findOrFail($question->id);
-        $question->question = $request['question'];
-        $question->optionA = $request['optionA'];
-        $question->optionB = $request['optionB'];
-        $question->optionC = $request['optionC'];
-        $question->correct_answer = $request['correct_answer'];
-        $question->save();
-        return view('admin.audition.index')->with('status', 'Updated');
+    $question = Question::find($questionId);
+    
+    if (!$question) {
+        abort(404); // or handle the case where the question is not found
     }
-
+    
+    $question->question = $request['question'];
+    $question->optionA = $request['optionA'];
+    $question->optionB = $request['optionB'];
+    $question->optionC = $request['optionC'];
+    $question->correct_answer = $request['correct_answer'];
+    $question->save();
+    
+    return redirect(route('audition.list'))->with('status', 'Updated');
+    }
 
     public function destroy(Question $question)
     {
@@ -96,6 +103,7 @@ class AuditionController extends Controller
 
     public function takeTest(Request $request)
     {
+        header('Cache-Control: public, max-age=604800');
         $tests = Question::inRandomOrder()->get();
         $email = $request->query('email');
         return view('admin.audition.takeTest', compact('email', 'tests'));
@@ -105,50 +113,26 @@ class AuditionController extends Controller
     public function submitTest(Request $request)
     {
         $request->validate([
-            'participant' => [
-                'required', 
-                Rule::unique('answers'),
-                'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'
-            ]
+            'participant' => ['required'],
+            'phone' => ['required']
         ]);
 
         $answers = new Answer();
         $answers->participant = $request->input('participant');
+        $answers->phone = $request->input('phone');
         $answers->chosenAnswer = json_encode($request->input('chosenAnswer'));
         $questions = collect($request->input('question'))->map(function ($question) {
             return str_replace('_', ' ', $question);
         })->toArray();
         $answers->question = implode(',', $questions);
-        $answers->save();
-
-        // Calculate the score
-        $correctAnswers = 0;
-        $totalQuestions = count($questions);
-        $chosenAnswers = $request->input('chosenAnswer');
-
-        foreach ($questions as $index => $question) {
-            if (isset($chosenAnswers[$index])) {
-                $correctAnswer = Question::where('question', $question)->value('correct_answer');
-                if (strcasecmp($correctAnswer, $chosenAnswers[$index]) === 0) {
-                    $correctAnswers++;
-                }
-            }
-        }
-
-
-        $score = ($correctAnswers / $totalQuestions) * 100;
-
-        // Save the score in the Answer model
-        $answers->score = $score;
-        $answers->save();
-
-        // Flash the score to the session
-
-        return redirect(route('test.finish'))->with('status', 'If you pass, you will get our mail. Interview Start within 7 Days from now');
+        $answers->save(); 
+        
+        return redirect()->back()->with('status', 'Submitted Successfully! If you pass, you will get our mail. Interview Start within 7 Days from now');
     }
 
 
     public function finishTest(){
+        header('Cache-Control: public, max-age=604800');
         return view('admin.audition.finishTest');
     }
 

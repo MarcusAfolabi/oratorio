@@ -24,18 +24,32 @@ Entertaining performances, Dynamic artists, Music genres pop, rock, jazz, R&B, M
          <div class="dots img-moving-anim5">
                <img src="assets/images/dots/dots5.png" alt="Shape Images">
             </div>
-            @forelse ($galleries->images as $image)
-            <div class="col-sm-6 col-lg-3" data-aos="fade-right" data-aos-duration="700">
-               <div class="about-item">
-                  <div class="item-thumb">
-                     <img src="{{ asset('storage/' . $image->path) }}" alt="About Images">
-                     <div class="item-content text-white"> 
-                     </div>
+            @php
+            $galleries = Cache::remember('galleries', 1209600, function () {
+            return App\Models\Post::with('images')
+                ->select('id', 'title', 'slug', 'views')
+                ->where('category_id', 'Gallery')
+                ->inRandomOrder()
+                ->limit(10)
+                ->get();
+            });
+            @endphp
+            
+           @forelse ($galleries as $gallery)
+           <div class="col-sm-6 col-lg-3" data-aos="fade-right" data-aos-duration="700">
+              <div class="about-item">
+                 <div class="item-thumb">
+                    @foreach ($gallery->images as $image)
+                       <img src="{{ asset('storage/app/public/' . $image->path) }}" alt="About Images">
+                    @endforeach
+                    <div class="item-content text-white"> 
+                    </div>
+                 </div>
                   </div>
                </div>
-            </div>
             @empty
-            @endforelse 
+            @endforelse
+
             <div class="dots img-moving-anim5">
                <img src="{{ asset('assets/images/dots/dots4.png') }}" alt="Shape Images">
             </div>
