@@ -159,6 +159,6 @@ class AuditionController extends Controller
     public function answeredTest()
     {
         $answers = Answer::all();
-        return view('admin.audition.answer', compact('answers'));
+        return view('admin.question.answer', compact('answers'));
     }
 }
