@@ -7,6 +7,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -119,8 +120,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(User::class, 'connects', 'connected_to', 'user_id');
     }
 
-    public function community()
+    public function community(): BelongsTo
     {
-        return $this->belongsTo(Community::class);
+        return $this->belongsTo(Community::class, 'community_id');
+    }
+
+    public function agreement()
+    {
+        return $this->belongsTo(Agreement::class);
     }
 }

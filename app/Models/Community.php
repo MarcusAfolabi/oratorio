@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Community extends Model
 {
@@ -13,7 +14,9 @@ class Community extends Model
 
     protected $fillable = ['name', 'logo', 'acronyms', 'location', 'phone'];
 
-    public function users(){
+    public function users(): HasMany
+    {
         return $this->hasMany(User::class);
     }
+
 }

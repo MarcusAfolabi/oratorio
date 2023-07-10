@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Comment;
+use App\Models\Agreement;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -55,7 +56,7 @@ class HomeController extends Controller
         });
 
         $comments = Comment::where('post_id', $post->id)->select('content', 'user_id')->latest()->get();
-        
+
         $posts = Cache::remember('random_posts', 60 * 24 * 7, function () {
             return Post::with(['images'])
                 ->select('id', 'user_id', 'slug', 'content', 'created_at')
@@ -73,6 +74,13 @@ class HomeController extends Controller
             ->latest()
             ->limit(7)
             ->get();
-        return view('dashboard.index', compact('post', 'influencers', 'latest_members', 'posts', 'comments', 'count_users', 'jobs', 'events', 'sideSingleTrack', 'sideBespokes', 'sidePodcast', 'sideSermon'));
+
+        $agreement = Agreement::where('user_id', auth()->user()->id)->first();
+
+        if (!$agreement) {
+            return view('onboarding.agreement');
+        } else {
+            return view('dashboard.index', compact('post', 'influencers', 'latest_members', 'posts', 'comments', 'count_users', 'jobs', 'events', 'sideSingleTrack', 'sideBespokes', 'sidePodcast', 'sideSermon'));
+        }
     }
 }

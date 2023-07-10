@@ -5,11 +5,11 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\AuditionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\AuditionController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\VolunteerController;
 
@@ -62,6 +62,10 @@ Route::controller(AuditionController::class)->group(function () {
 
 Route::resource('volunteer', VolunteerController::class);
 Route::resource('/', WelcomeController::class);
+Route::get('/onboarding', [WelcomeController::class, 'onboarding'])->name('welcome.onboarding');
+Route::get('/onboarding/agreement', [WelcomeController::class, 'agreement'])->name('welcome.agreement');
+Route::get('/onboarding/signed', [WelcomeController::class, 'signed'])->name('welcome.signed');
+Route::post('/onboarding_save', [WelcomeController::class, 'store'])->name('welcome.store');
 
 Route::get('/feeds', [HomeController::class, 'index'])->name('dashboard.index');
 

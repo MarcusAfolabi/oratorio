@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Storage;
 class CommunityController extends Controller
 { 
 
-    public function __construct()
-    {
-        $this->middleware(['auth', 'verified']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['auth', 'verified']);
+    // }
     public function index()
     {
         $communities = Community::paginate(4);

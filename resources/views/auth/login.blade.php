@@ -47,7 +47,7 @@
 </div>
 
 <!-- This is the modal -->
-<div id="register" uk-modal>
+<!-- <div id="register" uk-modal>
     <div class="uk-modal-dialog uk-modal-body rounded-xl shadow-2xl p-0 lg:w-5/12">
         <button class="uk-modal-close-default p-3 bg-gray-100 rounded-full m-3" type="button" uk-close></button>
         <div class="border-b px-7 py-5">
@@ -94,6 +94,6 @@
         </form>
 
     </div>
-</div>
+</div> -->
 
 @endsection
