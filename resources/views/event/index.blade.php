@@ -16,6 +16,8 @@ Entertaining performances, Dynamic artists, Music genres pop, rock, jazz, R&B, M
            Annual Festive of Praise and Worship
          </h2>
       </div>
+      <x-validation-errors class="mb-1" />
+
       <div class="contact-wrap bg-none p-0">
          <div class="dots">
             <img src="assets/images/dots/dots13.png" alt="Shadow Image" class="contact-dots-1 img-moving-anim2">

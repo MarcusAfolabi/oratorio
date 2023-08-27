@@ -1,5 +1,5 @@
 <x-mail::message>
-# Hi there {{ $event->fullname }}
+# Hi {{ $event->fullname }}
 
 Thank you for your interest in attending the annual festive of praise and worship. This year event promised to be one of the kind. 
 Invite your friends and family. Share the flyer and support the event financially.
