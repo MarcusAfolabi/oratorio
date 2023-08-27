@@ -4,7 +4,7 @@
                 <img src="{{ asset('new_logo_oratorio_group.png') }}" alt="Header Logo">
             </a>
             <div class="collapse navbar-collapse d-none d-lg-block">
-                <ul class="navbar-nav m-auto">
+                <ul class="navbar-nav m-auto" style="color: white;">
                     <li class="nav-item">
                         <a href="{{ url('/') }}" class="nav-link py-3">Welcome</a>
                     </li>

@@ -9,8 +9,8 @@ Entertaining performances, Dynamic artists, Music genres, pop, rock, jazz, R&B, 
 
 <div class="info-sec">
    <div class="container">
-      <div class="info-countdown" style="background-image: url(assets/images/banner/bg.png);">
-         <ul class="counter-box d-flex justify-content-around" data-countdown="2023/04/28">
+      <div class="info-countdown" style="background-image: url(assets/images/banner/the-lamb-slain.png);">
+         <ul class="counter-box d-flex justify-content-around" data-countdown="2023/10/22">
          </ul>
          <div class="dots img-moving-anim2">
             <img src="assets/images/dots/dots3.png" alt="Shadow Image">
