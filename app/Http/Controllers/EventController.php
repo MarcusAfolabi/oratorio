@@ -41,7 +41,7 @@ class EventController extends Controller
 
         Mail::to($event->email)->send(new EventMail($event));
         Notification::route('mail', 'oratoriogroup@gmail.com')->notify(new EventNotification($event));
-
+        
         return redirect()->back()->with('status', 'Thank you for your interest');
     }
 
