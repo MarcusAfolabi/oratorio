@@ -16,8 +16,11 @@ Entertaining performances, Dynamic artists, Music genres pop, rock, jazz, R&B, M
            Annual Festive of Praise and Worship
          </h2>
       </div>
-      <x-validation-errors class="mb-1" />
-
+      @if (session('status'))
+        <p class="bg-whit border-t-4 border-red-600 p-5 shadow-lg relative rounded-md" uk-alert>
+            {{ session('status') }}
+        </p>
+        @endif
       <div class="contact-wrap bg-none p-0">
          <div class="dots">
             <img src="assets/images/dots/dots13.png" alt="Shadow Image" class="contact-dots-1 img-moving-anim2">
@@ -60,7 +63,7 @@ Entertaining performances, Dynamic artists, Music genres pop, rock, jazz, R&B, M
                      </div>
                      <div class="col-lg-4">
                         <label for="email" class="form-label">Phone no</label>
-                        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Enter Phone no" required>
+                        <input type="tel" class="form-control" name="phone"  pattern="^0(?:70|71|80|81|90|91)[0-9]{8}$" maxlength="11" id="phone" placeholder="Enter Phone no" required>
                      </div> 
                   </div> 
                   <button class="mt-4 custom-btn2" type="submit">Attend</button>
