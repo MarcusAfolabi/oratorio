@@ -96,7 +96,7 @@
                         <div class="text-sm md:leading-8 leading-7"> 1. Members are encouraged to embrace a growth mindset and seek personal and spiritual growth within the group.
 
                         </div>
-                @php $currentDate = date('F j, Y'); @endphp
+                         @php $currentDate = date('F j, Y'); @endphp
 
                         <div class="text-sm md:leading-8 leading-7"> 2. Personal holiness, prayerfulness, and integrity are essential.</div>
                         <br>
