@@ -10,20 +10,16 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('about-oratorio') }}" class="nav-link py-3">About Oratorio</a>
-                    </li>
-                    <!-- <li class="nav-item">
-                        <a href="{{ route('login') }}" target="_blank" class="nav-link py-3">Join</a>
-                    </li> -->
-                   
+                    </li>                    
                     <li class="nav-item">
                         <a href="{{ url('gallery-oratorio') }}" class="nav-link py-3">Gallery</a>
                     </li>
                     <li class="nav-item">
                         <a data-bs-toggle="modal" href="#donateModal" class="nav-link py-3">Support</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="{{ route('audition.index') }}" target="_blank" class="nav-link py-3">Audition</a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                         <a href="{{ url('contact-oratorio') }}" class="nav-link py-3">Contact</a>
                     </li>
@@ -33,7 +29,7 @@
                         <img src="{{ asset('assets/images/icon/sun.svg') }}" alt="Sun" class="fa-sun" style="display: none;">
                         <img src="{{ asset('assets/images/icon/moon.svg') }}" alt="Moon" class="fa-moon">
                     </div>
-                    <button class="header-btn custom-btn2" data-bs-toggle="modal" data-bs-target="#eventModal">Discovery Hour</button>
+                   <a href="{{ route('discovery.hour') }}"> <button class="header-btn custom-btn2" data-bs-toggle="modal" data-bs-target="#">Discovery Hour</button></a>
                 </div>
             </div>
 
