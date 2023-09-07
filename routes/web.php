@@ -11,7 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\AuditionController;
 use App\Http\Controllers\CommunityController;
-use App\Http\Controllers\EventController;
+use App\Http\Controllers\ConcertController;
 use App\Http\Controllers\VolunteerController;
 
 
@@ -73,7 +73,7 @@ Route::get('/feeds', [HomeController::class, 'index'])->name('dashboard.index');
 Route::resource('contact', ContactController::class);
 Route::post('subcribe', [ContactController::class, 'letter'])->name('letter.subcribe');
 Route::post('testify', [ContactController::class, 'testify'])->name('testify.testifer');
-Route::resource('event', EventController::class);
+Route::resource('concert', ConcertController::class);
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/users', 'index')->name('users.index');

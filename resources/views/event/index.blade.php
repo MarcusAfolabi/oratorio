@@ -50,7 +50,7 @@ Entertaining performances, Dynamic artists, Music genres pop, rock, jazz, R&B, M
                </div>
             </div> -->
             <div class="col-lg-12 mt-4 mt-lg-0">
-               <form class="contact-form" action="{{ route('event.store') }}" method="POST">
+               <form class="contact-form" action="{{ route('concert.store') }}" method="POST">
                   @csrf
                   <div class="row gy-3">
                      <div class="col-lg-4">

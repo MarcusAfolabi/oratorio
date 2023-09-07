@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Notifications\EventNotification;
 use Illuminate\Support\Facades\Notification;
 
-class EventController extends Controller
+class ConcertController extends Controller
 {
      
     public function index()
