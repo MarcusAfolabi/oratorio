@@ -33,7 +33,7 @@
                         <img src="{{ asset('assets/images/icon/sun.svg') }}" alt="Sun" class="fa-sun" style="display: none;">
                         <img src="{{ asset('assets/images/icon/moon.svg') }}" alt="Moon" class="fa-moon">
                     </div>
-                    <button class="header-btn custom-btn2" data-bs-toggle="modal" data-bs-target="#eventModal">Volunteer</button>
+                    <button class="header-btn custom-btn2" data-bs-toggle="modal" data-bs-target="#eventModal">Discovery Hour</button>
                 </div>
             </div>
 

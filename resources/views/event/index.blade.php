@@ -63,11 +63,11 @@ Entertaining performances, Dynamic artists, Music genres pop, rock, jazz, R&B, M
                      </div>
                      <div class="col-lg-3">
                         <label for="email" class="form-label">Phone no</label>
-                        <input type="tel" class="form-control" name="phone"  pattern="^0(?:70|71|80|81|90|91)[0-9]{8}$" maxlength="11" id="phone" placeholder="Enter Phone no" required>
+                        <input type="tel" class="form-control" name="phone"  pattern="^0(?:70|71|80|81|90|91)[0-9]{8}$" maxlength="11" minlength="11" id="phone" placeholder="Enter Phone no" required>
                      </div> 
                      <div class="col-lg-3">
                         <label for="school" class="form-label">Your School?</label>
-                        <input type="text" class="form-control" name="school" id="school" placeholder="Current/Attended School" required>
+                        <input type="text" class="form-control" name="school" id="school" placeholder="Current/Attended School">
                      </div> 
                   </div> 
                   <button class="mt-4 custom-btn2" type="submit">Attend</button>

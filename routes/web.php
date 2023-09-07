@@ -74,6 +74,8 @@ Route::resource('contact', ContactController::class);
 Route::post('subcribe', [ContactController::class, 'letter'])->name('letter.subcribe');
 Route::post('testify', [ContactController::class, 'testify'])->name('testify.testifer');
 Route::resource('concert', ConcertController::class);
+Route::get('discoveryhour', [ConcertController::class, 'discoveryHour'])->name('discovery.hour');
+Route::post('discovery_', [ConcertController::class, 'discoveryStore'])->name('discovery.store');
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/users', 'index')->name('users.index');

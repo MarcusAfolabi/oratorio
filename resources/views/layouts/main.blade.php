@@ -84,7 +84,7 @@
                         <h5 class="card-title popup-title"></h5>
                      </div>
                   </div>
-                  <form action="{{ route('volunteer.store') }}" class="popup-form" method="POST">
+                  <!-- <form action="{{ route('volunteer.store') }}" class="popup-form" method="POST">
                      @csrf
                      <div class="row gy-3 mb-3">
                         <div class="col-lg-6">
@@ -119,7 +119,9 @@
                         </div>
                      </div>
                      <button type="submit" class="custom-btn2">Join Now</button>
-                  </form>
+                  </form> -->
+
+                  
                </div>
             </div>
          </div>
