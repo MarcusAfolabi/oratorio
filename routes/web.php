@@ -24,6 +24,10 @@ Route::get('/about-oratorio', function () {
     return view('aboutUs');
 });
 
+Route::get('/registration', function () {
+    return view('registration');
+});
+
 Route::get('/contact-oratorio', function () {
     return view('contactUs');
 });
