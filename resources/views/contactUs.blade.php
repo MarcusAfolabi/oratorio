@@ -8,7 +8,7 @@ Entertaining performances, Dynamic artists, Music genres pop, rock, jazz, R&B, M
 @include('partials._nav')
 <br>
 <br>
-@include('partials._contact')
 
+@include('partials._contact')
 
 @endsection

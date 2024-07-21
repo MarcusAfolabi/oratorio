@@ -75,7 +75,7 @@
 </head>
 
 <body>
-    @livewireScripts
+    
     <div class="body-wrap">
 
         @yield('main')

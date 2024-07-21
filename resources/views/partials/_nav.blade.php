@@ -29,7 +29,8 @@
                         <img src="{{ asset('assets/images/icon/sun.svg') }}" alt="Sun" class="fa-sun" style="display: none;">
                         <img src="{{ asset('assets/images/icon/moon.svg') }}" alt="Moon" class="fa-moon">
                     </div>
-                   <a href="{{ route('discovery.hour') }}"> <button class="header-btn custom-btn2" data-bs-toggle="modal" data-bs-target="#">Discovery Hour</button></a>
+                   <a href="{{ route('oratorio-songs') }}"> <button class="header-btn custom-btn2" data-bs-toggle="modal" data-bs-target="#">Our Songs</button></a>
+                   <!-- <a href="{{ route('discovery.hour') }}"> <button class="header-btn custom-btn2" data-bs-toggle="modal" data-bs-target="#">Discovery Hour</button></a> -->
                 </div>
             </div>
 

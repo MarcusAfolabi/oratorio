@@ -31,7 +31,10 @@ Route::get('/registration', function () {
 Route::get('/contact-oratorio', function () {
     return view('contactUs');
 });
- 
+Route::get('/oratorio-songs', function () {
+    return view('our-songs');
+})->name('oratorio-songs');
+
 
 Route::get('/gallery-oratorio', function () {
     $galleries = Cache::remember('random_posts', 60 * 24 * 7, function () {
