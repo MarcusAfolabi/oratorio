@@ -71,7 +71,6 @@
 
         gtag('config', 'UA-178400534-1');
     </script>
-    @livewireStyles
 </head>
 
 <body>
